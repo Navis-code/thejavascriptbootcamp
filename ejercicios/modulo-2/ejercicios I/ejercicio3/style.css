@@ -1,0 +1,21 @@
+.square {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  color: white;
+}
+
+.small {
+  height: 100px;
+  width: 100px;
+}
+
+.medium {
+  height: 200px;
+  width: 200px;
+}
+
+.large {
+  height: 300px;
+  width: 300px;
+}
