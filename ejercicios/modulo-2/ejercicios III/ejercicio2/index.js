@@ -12,10 +12,12 @@ const textToWrite = document.querySelector('.textToWrite');
 const textWritedByUser = document.querySelector('.textWritedByUser');
 const form = document.querySelector('.form');
 const input = document.querySelector('.input');
+const otherWordButton = document.querySelector('.otherWordButton');
+const congratulations = document.querySelector('.congratulations');
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  textWritedByUser.innerHTML = '';
+  cleanAndReset();
 
   const textToWriteValue = textToWrite.textContent;
   const textWritedByUserValue = input.value;
@@ -24,14 +26,13 @@ form.addEventListener('submit', (e) => {
     return;
   }
 
-  // Compare 2 string
   const textToWriteArray = textToWriteValue.split('');
   const textWritedByUserArray = textWritedByUserValue.split('');
 
   checkWordByWord(textToWriteArray, textWritedByUserArray);
 
   if (textToWriteValue === textWritedByUserValue) {
-    console.log('You win!');
+    congratulations.classList.add('show');
   }
 
   form.reset();
@@ -52,4 +53,29 @@ function checkWordByWord(textToWriteArray, textWritedByUserArray) {
     fragment.append(span);
   });
   textWritedByUser.append(fragment);
+}
+
+otherWordButton.addEventListener('click', () => {
+  cleanAndReset();
+  const randomWord = getRandomWord();
+  textToWrite.textContent = randomWord;
+});
+
+function getRandomWord() {
+  const randomPhraseArray = [
+    'Hola, soy una frase aleatoria',
+    'Adiós, soy otra frase aleatoria',
+    'Casa de papel',
+    'Coche de carreras automático',
+    'Perro, perrito, perruno',
+    'Gato callejero que se come ratones',
+    'Ordenador portátil de 15 pulgadas',
+  ];
+  const randomIndex = Math.floor(Math.random() * randomPhraseArray.length);
+  return randomPhraseArray[randomIndex];
+}
+
+function cleanAndReset() {
+  textWritedByUser.innerHTML = '';
+  congratulations.classList.remove('show');
 }

@@ -4,3 +4,9 @@
 .incorrect {
   color: red;
 }
+.congratulations {
+  display: none;
+}
+.show {
+  display: block;
+}
